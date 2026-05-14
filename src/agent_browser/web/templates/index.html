@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AgentBrowser - AI Browser Automation</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+    <div id="app">
+        <header>
+            <h1>AgentBrowser</h1>
+            <p class="subtitle">AI-Powered Browser Automation</p>
+            <div id="status" class="status idle">Idle</div>
+        </header>
+
+        <main>
+            <section class="task-input">
+                <h2>Describe Your Task</h2>
+                <textarea id="taskInput" placeholder="Example: Go to amazon.com and search for 'wireless headphones', then extract the top 5 results with prices...
+
+Or: Book a ticket at 21:15 on example.com
+
+Or: Login to my account and check order status"></textarea>
+                <div class="actions">
+                    <button id="runBtn" onclick="runTask()">Run Task</button>
+                    <button id="scheduleBtn" onclick="showSchedule()">Schedule</button>
+                    <button id="screenshotBtn" onclick="takeScreenshot()">Screenshot</button>
+                </div>
+            </section>
+
+            <div id="schedulePanel" class="schedule-panel hidden">
+                <h3>Schedule Task</h3>
+                <label>Execute At:</label>
+                <input type="datetime-local" id="scheduleTime">
+                <label>Or Cron Expression:</label>
+                <input type="text" id="scheduleCron" placeholder="0 9 * * * (daily at 9am)">
+                <label><input type="checkbox" id="preCheck"> Run pre-execution check</label>
+                <button onclick="scheduleTask()">Schedule</button>
+                <button onclick="hideSchedule()">Cancel</button>
+            </div>
+
+            <section class="output">
+                <div class="tabs">
+                    <button class="tab active" onclick="switchTab('log')">Log</button>
+                    <button class="tab" onclick="switchTab('screenshot')">Browser View</button>
+                    <button class="tab" onclick="switchTab('tasks')">Tasks</button>
+                </div>
+
+                <div id="logPanel" class="panel active">
+                    <div id="logOutput"></div>
+                </div>
+
+                <div id="screenshotPanel" class="panel">
+                    <img id="screenshotImg" src="" alt="Browser screenshot">
+                    <p id="noScreenshot">No screenshot yet. Run a task first.</p>
+                </div>
+
+                <div id="tasksPanel" class="panel">
+                    <table id="tasksTable">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Task</th>
+                                <th>Status</th>
+                                <th>Execute At</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tasksBody"></tbody>
+                    </table>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="/static/js/app.js"></script>
+</body>
+</html>

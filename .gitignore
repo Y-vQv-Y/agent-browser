@@ -1,0 +1,17 @@
+*.pyc
+__pycache__/
+*.egg-info/
+dist/
+build/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+htmlcov/
+coverage.xml
+.coverage
+*.egg
+.env
+.venv
+venv/
+screenshots/
+~/.agent-browser/
