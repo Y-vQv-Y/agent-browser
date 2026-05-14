@@ -85,7 +85,7 @@ class TestSessionProfile:
         session_profile.delete()
         assert not profile_dir.exists()
 
-    @pytest.mark.asyncio(mode="strict")
+    @pytest.mark.asyncio
     async def test_export_cookies(self, session_profile):
         mock_context = AsyncMock()
         mock_context.cookies.return_value = [
@@ -97,7 +97,7 @@ class TestSessionProfile:
         saved = json.loads(session_profile.cookies_file.read_text())
         assert saved[0]["name"] == "session"
 
-    @pytest.mark.asyncio(mode="strict")
+    @pytest.mark.asyncio
     async def test_import_cookies(self, session_profile):
         # Write cookies file first
         cookies = [{"name": "token", "value": "xyz", "domain": "example.com"}]
@@ -108,7 +108,7 @@ class TestSessionProfile:
         assert count == 1
         mock_context.add_cookies.assert_called_once_with(cookies)
 
-    @pytest.mark.asyncio(mode="strict")
+    @pytest.mark.asyncio
     async def test_import_cookies_no_file(self, session_profile):
         mock_context = AsyncMock()
         count = await session_profile.import_cookies(mock_context)

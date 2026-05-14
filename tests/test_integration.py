@@ -37,7 +37,7 @@ def tool_call(name, arguments, call_id="call_1"):
 class TestExtractProductPrices:
     """Simulate: 'Go to amazon.com and get the price of iPhone 15'"""
 
-    @pytest.mark.asyncio(mode="strict")
+    @pytest.mark.asyncio
     async def test_navigate_and_extract(self):
         config = AppConfig(llm=LLMConfig(api_key="test-key"))
         agent = AgentBrowser(config)
@@ -84,7 +84,7 @@ class TestExtractProductPrices:
         assert result.steps[0].tool_name == "navigate"
         assert result.steps[-1].tool_name == "task_complete"
 
-    @pytest.mark.asyncio(mode="strict")
+    @pytest.mark.asyncio
     async def test_extract_multiple_products(self):
         """Extract prices for multiple products from a search results page."""
         config = AppConfig(llm=LLMConfig(api_key="test-key"))
@@ -124,7 +124,7 @@ class TestExtractProductPrices:
 class TestFoodDeliveryPrices:
     """Simulate: 'Check the delivery price on Meituan/Uber Eats'"""
 
-    @pytest.mark.asyncio(mode="strict")
+    @pytest.mark.asyncio
     async def test_food_delivery_search(self):
         config = AppConfig(llm=LLMConfig(api_key="test-key"))
         agent = AgentBrowser(config)
@@ -173,7 +173,7 @@ class TestFoodDeliveryPrices:
 class TestCaptchaHandling:
     """Simulate: agent encounters a CAPTCHA during task execution"""
 
-    @pytest.mark.asyncio(mode="strict")
+    @pytest.mark.asyncio
     async def test_captcha_auto_detect_and_solve(self):
         config = AppConfig(llm=LLMConfig(api_key="test-key"))
         agent = AgentBrowser(config)
@@ -213,7 +213,7 @@ class TestCaptchaHandling:
 class TestScheduledTask:
     """Simulate: 'Book ticket at 21:15'"""
 
-    @pytest.mark.asyncio(mode="strict")
+    @pytest.mark.asyncio
     async def test_schedule_future_task(self, tmp_path):
         config = AppConfig(llm=LLMConfig(api_key="test-key"), data_dir=str(tmp_path))
         agent = AgentBrowser(config)
@@ -252,7 +252,7 @@ class TestScheduledTask:
 class TestLoginFlow:
     """Simulate: agent asks user for credentials during login"""
 
-    @pytest.mark.asyncio(mode="strict")
+    @pytest.mark.asyncio
     async def test_ask_user_for_credentials(self):
         config = AppConfig(llm=LLMConfig(api_key="test-key"))
         agent = AgentBrowser(config)
@@ -295,7 +295,7 @@ class TestLoginFlow:
 class TestMultiStepPlan:
     """Simulate: agent creates and executes a multi-step plan."""
 
-    @pytest.mark.asyncio(mode="strict")
+    @pytest.mark.asyncio
     async def test_create_and_execute_plan(self):
         config = AppConfig(llm=LLMConfig(api_key="test-key"))
         agent = AgentBrowser(config)
@@ -343,7 +343,7 @@ class TestMultiStepPlan:
 class TestErrorRecovery:
     """Simulate: agent handles errors gracefully."""
 
-    @pytest.mark.asyncio(mode="strict")
+    @pytest.mark.asyncio
     async def test_navigation_error_recovery(self):
         config = AppConfig(llm=LLMConfig(api_key="test-key"))
         agent = AgentBrowser(config)
@@ -368,7 +368,7 @@ class TestErrorRecovery:
         assert result.steps[0].success is False
         assert result.steps[1].success is True
 
-    @pytest.mark.asyncio(mode="strict")
+    @pytest.mark.asyncio
     async def test_max_turns_limit(self):
         config = AppConfig(llm=LLMConfig(api_key="test-key"))
         agent = AgentBrowser(config)
@@ -395,7 +395,7 @@ class TestErrorRecovery:
 class TestJavaScriptExecution:
     """Simulate: agent uses run_javascript for data extraction."""
 
-    @pytest.mark.asyncio(mode="strict")
+    @pytest.mark.asyncio
     async def test_run_javascript_to_extract(self):
         config = AppConfig(llm=LLMConfig(api_key="test-key"))
         agent = AgentBrowser(config)
@@ -428,7 +428,7 @@ class TestJavaScriptExecution:
 class TestWaitAndScroll:
     """Simulate: agent scrolls down to load lazy content and waits."""
 
-    @pytest.mark.asyncio(mode="strict")
+    @pytest.mark.asyncio
     async def test_scroll_and_wait_for_content(self):
         config = AppConfig(llm=LLMConfig(api_key="test-key"))
         agent = AgentBrowser(config)
@@ -521,7 +521,7 @@ class TestProfileSession:
 class TestStepCallback:
     """Test step-by-step progress tracking."""
 
-    @pytest.mark.asyncio(mode="strict")
+    @pytest.mark.asyncio
     async def test_step_callback_fires(self):
         config = AppConfig(llm=LLMConfig(api_key="test-key"))
         agent = AgentBrowser(config)

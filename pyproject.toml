@@ -43,7 +43,7 @@ dependencies = [
     "playwright>=1.40",
     # Web GUI
     "fastapi>=0.110",
-    "uvicorn[standard]>=0.27",
+    "uvicorn>=0.27",
     "jinja2>=3.1",
     # Task scheduling
     "apscheduler>=3.10",

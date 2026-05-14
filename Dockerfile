@@ -27,12 +27,15 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 WORKDIR /app
 
 # Copy project files
-COPY pyproject.toml .
+COPY pyproject.toml README.md ./
 COPY src/ src/
 COPY tests/ tests/
 
+# Upgrade pip first to avoid build issues
+RUN python -m pip install --no-cache-dir --upgrade pip setuptools wheel
+
 # Install package
-RUN pip install --no-cache-dir -e ".[dev]"
+RUN pip install --no-cache-dir -e .
 
 # Install Playwright browsers
 RUN playwright install chromium --with-deps
@@ -41,5 +44,5 @@ RUN playwright install chromium --with-deps
 RUN mkdir -p /root/.agent-browser
 
 # Default to CLI
-ENTRYPOINT ["agent-browser"]
+ENTRYPOINT ["ab"]
 CMD ["--help"]
