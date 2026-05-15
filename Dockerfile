@@ -15,6 +15,9 @@ RUN pip install --no-cache-dir -i https://mirrors.aliyun.com/pypi/simple/ -e .
 
 # Install ALL system dependencies required by Chromium (without downloading browser)
 # This covers libxkbcommon, libgbm, libnss3, fonts, etc. - everything CloakBrowser needs
+
+RUN sed -i 's|http://deb.debian.org|https://mirrors.aliyun.com|g' /etc/apt/sources.list.d/debian.sources
+
 RUN playwright install-deps chromium
 
 # --- CloakBrowser Chromium (anti-detection patched binary) ---
