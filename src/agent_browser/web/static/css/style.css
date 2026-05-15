@@ -1,0 +1,226 @@
+:root {
+    --bg: #0f1117;
+    --surface: #1a1d27;
+    --border: #2a2d37;
+    --text: #e4e4e7;
+    --text-dim: #9ca3af;
+    --primary: #3b82f6;
+    --primary-hover: #2563eb;
+    --success: #22c55e;
+    --error: #ef4444;
+    --warning: #eab308;
+    --font: 'SF Mono', 'Fira Code', 'JetBrains Mono', monospace;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    font-family: var(--font);
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+}
+
+#app {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 16px 0;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 24px;
+}
+
+header h1 {
+    font-size: 24px;
+    font-weight: 700;
+    background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.subtitle { color: var(--text-dim); font-size: 14px; }
+.status {
+    margin-left: auto;
+    padding: 4px 12px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+.status.idle { background: var(--border); color: var(--text-dim); }
+.status.running { background: #1e40af33; color: var(--primary); }
+.status.success { background: #16653433; color: var(--success); }
+.status.error { background: #7f1d1d33; color: var(--error); }
+
+.task-input {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 24px;
+    margin-bottom: 24px;
+}
+
+.task-input h2 {
+    font-size: 16px;
+    margin-bottom: 12px;
+    color: var(--text-dim);
+}
+
+textarea {
+    width: 100%;
+    min-height: 120px;
+    padding: 16px;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    color: var(--text);
+    font-family: var(--font);
+    font-size: 14px;
+    resize: vertical;
+    outline: none;
+}
+
+textarea:focus { border-color: var(--primary); }
+
+.actions {
+    display: flex;
+    gap: 8px;
+    margin-top: 12px;
+}
+
+button {
+    padding: 8px 20px;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    color: var(--text);
+    font-family: var(--font);
+    font-size: 13px;
+    cursor: pointer;
+    transition: all 0.15s;
+}
+
+button:hover { background: var(--border); }
+
+#runBtn {
+    background: var(--primary);
+    border-color: var(--primary);
+    color: white;
+    font-weight: 600;
+}
+
+#runBtn:hover { background: var(--primary-hover); }
+#runBtn:disabled { opacity: 0.5; cursor: not-allowed; }
+
+.schedule-panel {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 24px;
+}
+
+.schedule-panel label {
+    display: block;
+    font-size: 13px;
+    color: var(--text-dim);
+    margin: 8px 0 4px;
+}
+
+.schedule-panel input[type="datetime-local"],
+.schedule-panel input[type="text"] {
+    width: 100%;
+    padding: 8px 12px;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    color: var(--text);
+    font-family: var(--font);
+    font-size: 13px;
+}
+
+.schedule-panel button { margin-top: 12px; margin-right: 8px; }
+
+.hidden { display: none; }
+
+.output {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.tabs {
+    display: flex;
+    border-bottom: 1px solid var(--border);
+}
+
+.tab {
+    padding: 10px 20px;
+    border: none;
+    border-bottom: 2px solid transparent;
+    border-radius: 0;
+    font-size: 13px;
+    background: transparent;
+}
+
+.tab.active {
+    border-bottom-color: var(--primary);
+    color: var(--primary);
+}
+
+.panel {
+    display: none;
+    padding: 16px;
+    min-height: 300px;
+    max-height: 500px;
+    overflow-y: auto;
+}
+
+.panel.active { display: block; }
+
+#logOutput {
+    font-size: 13px;
+    line-height: 1.6;
+}
+
+.log-entry {
+    padding: 4px 0;
+    border-bottom: 1px solid var(--border);
+}
+
+.log-entry.step { color: var(--primary); }
+.log-entry.error { color: var(--error); }
+.log-entry.success { color: var(--success); }
+.log-entry.info { color: var(--text-dim); }
+
+#screenshotImg {
+    max-width: 100%;
+    border-radius: 8px;
+    display: none;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+}
+
+th {
+    text-align: left;
+    padding: 8px 12px;
+    border-bottom: 1px solid var(--border);
+    color: var(--text-dim);
+    font-weight: 600;
+}
+
+td {
+    padding: 8px 12px;
+    border-bottom: 1px solid var(--border);
+}
