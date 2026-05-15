@@ -20,6 +20,9 @@ RUN python -m pip install --no-cache-dir --upgrade pip setuptools wheel -i https
 RUN pip install --no-cache-dir -i https://mirrors.aliyun.com/pypi/simple/ -e .
 
 # Install Playwright's default Chromium + ALL system deps
+
+RUN sed -i 's|http://deb.debian.org|https://mirrors.aliyun.com|g' /etc/apt/sources.list.d/debian.sources
+
 RUN playwright install chromium --with-deps
 
 # Create data directory
